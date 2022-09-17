@@ -2,7 +2,7 @@
 A network Packet Sniffing tool.
 
 This is a simple and easy project to capture network traffic of your device and view those packet. I complete this project as my semester end project.
-This uses python language for main programming language and css for the styling the GUI.
+This uses `Python` language for main programming language and `CSS` for the styling the GUI.
 
 ## Starting
 To use this project first you need to install all the packages from the `requirements.txt` file using pip command:
