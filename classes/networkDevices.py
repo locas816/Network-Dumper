@@ -5,15 +5,16 @@ import sys
 import subprocess
 import os
 import multiprocessing
-
+global file_path
+file_path = os.path.dirname(os.path.abspath(__file__)) + "/"
 
 class NetworkDevices(QWidget):
-    def __init__(self, localip, file_path):
+    def __init__(self, localip):
         super().__init__()
         self.myip = localip
         self.deviceIpList = []
         # load template
-        uic.loadUi(file_path+"/templates/networkDevices.ui", self)
+        uic.loadUi(file_path+"templates/networkDevices.ui", self)
         # finding children
         self.myIP = self.findChild(QLabel, "my_ip")
         self.devices = self.findChild(QLabel, "devices")

@@ -1,12 +1,13 @@
 from PyQt5.QtWidgets import QDialog
 from PyQt5 import uic
-
+global file_path
+file_path = os.path.dirname(os.path.abspath(__file__)) + "/"
 class FilterSupport(QDialog):
-	def __init__(self, file_path):
+	def __init__(self):
 		super().__init__()
 
 		#load template
-		uic.loadUi(file_path+"/templates/FilterSyntaxSupport.ui", self)
+		uic.loadUi(file_path+"templates/FilterSyntaxSupport.ui", self)
 
 		self.show()
 

@@ -1,15 +1,16 @@
 from PyQt5.QtWidgets import QWidget, QTreeWidget, QLabel, QTreeWidgetItem
 from PyQt5 import uic, QtCore
-
+global file_path
+file_path = os.path.dirname(os.path.abspath(__file__)) + "/"
 
 class IpsWindow(QWidget):
-    def __init__(self, localip, ipsList, file_path):
+    def __init__(self, localip, ipsList):
         super().__init__()
         self.localip = localip
         self.ipsList = ipsList
 
         # load template
-        uic.loadUi(file_path+"/templates/IpsWindow.ui", self)
+        uic.loadUi(file_path+"templates/IpsWindow.ui", self)
 
         # finding children
         self.localIP = self.findChild(QLabel, "localIP")

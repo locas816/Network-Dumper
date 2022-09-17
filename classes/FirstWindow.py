@@ -1,12 +1,13 @@
 from PyQt5.QtWidgets import QWidget, QLabel, QPushButton, QComboBox, QLineEdit, QFileDialog
 from PyQt5 import uic
 from PyQt5.QtCore import pyqtSignal
-from scapy.all import get_if_list, compile_filter
-from .FilterWindow import FilterWindow
+from scapy.all import get_if_list
+#from .FilterWindow import FilterWindow
 from .FilterSupport import FilterSupport
 import re
 import os
-
+global file_path
+file_path = os.path.dirname(os.path.abspath(__file__)) + "/"
 
 
 class FirstWindow(QWidget):
@@ -14,11 +15,12 @@ class FirstWindow(QWidget):
     dbSig = pyqtSignal()
     openSig = pyqtSignal(str)
 
-    def __init__(self, currentMode, file_path):
+    def __init__(self, currentMode):
         super().__init__()
         self.currentMode = currentMode
+		print(file_path)
         # load template
-        uic.loadUi(file_path + "/templates/FirstWindow.ui", self)
+        uic.loadUi(file_path+"templates/FirstWindow.ui", self)
 
         # find childs
         self.iface = self.findChild(QComboBox, "iface")
@@ -45,26 +47,26 @@ class FirstWindow(QWidget):
             self.iface.addItem(iface)
         self.filterStr = ""
 
-        with open("stylesheets/darkmode.css", "r") as f:
+        with open(file_path+"stylesheets/darkmode.css", "r") as f:
             self.darkmode = f.read()
-        with open("stylesheets/lightmode.css", "r") as f:
+        with open(file_path+"stylesheets/lightmode.css", "r") as f:
             self.lightmode = f.read()
-        with open("stylesheets/filterWindowStyleD.css", "r") as f:
+        with open(file_path+"stylesheets/filterWindowStyleD.css", "r") as f:
             self.filterWindowStyleD = f.read()
 
         if self.currentMode == self.darkmode:
-            with open("stylesheets/filterSearchBarOriginalD.css", "r") as f:
+            with open(file_path+"stylesheets/filterSearchBarOriginalD.css", "r") as f:
                 self.filterSearchBarOriginal = f.read()
-            with open("stylesheets/filterSearchBarValidD.css", "r") as f:
+            with open(file_path+"stylesheets/filterSearchBarValidD.css", "r") as f:
                 self.filterSearchBarValid = f.read()
-            with open("stylesheets/filterSearchBarErrorD.css", "r") as f:
+            with open(file_path+"stylesheets/filterSearchBarErrorD.css", "r") as f:
                 self.filterSearchBarError = f.read()
         elif self.currentMode == self.lightmode:
-            with open("stylesheets/filterSearchBarOriginalL.css", "r") as f:
+            with open(file_path+"stylesheets/filterSearchBarOriginalL.css", "r") as f:
                 self.filterSearchBarOriginal = f.read()
-            with open("stylesheets/filterSearchBarValidL.css", "r") as f:
+            with open(file_path+"stylesheets/filterSearchBarValidL.css", "r") as f:
                 self.filterSearchBarValid = f.read()
-            with open("stylesheets/filterSearchBarErrorL.css", "r") as f:
+            with open(file_path+"stylesheets/filterSearchBarErrorL.css", "r") as f:
                 self.filterSearchBarError = f.read()
 
     def started(self):
